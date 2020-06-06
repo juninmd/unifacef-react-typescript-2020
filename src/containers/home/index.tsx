@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { Container, Card, Grid, Header, Icon } from 'semantic-ui-react';
+
+import { Card, Container, Grid, Header, Icon } from 'semantic-ui-react';
 import { inject, observer } from 'mobx-react';
-import NewRouterStore from '../../mobx/router.store';
+
 import HomeStore from './store';
+import NewRouterStore from '../../mobx/router.store';
 
 interface Props {
   router: NewRouterStore;
@@ -30,16 +32,16 @@ export default class Home extends React.Component<Props> {
               <Header color='blue' as='h2'>
                 <Header.Content>
                   Home
-                 <Header.Subheader>Seja bem vindo</Header.Subheader>
+                 <Header.Subheader>Moedas agora</Header.Subheader>
                 </Header.Content>
               </Header>
             </Grid.Column>
           </Grid.Row>
         </Grid>
         <Card.Group itemsPerRow={2}>
-          {records.map((e) => {
+          {records.map((e, index) => {
             return (
-              <Card>
+              <Card key={index}>
                 <Card.Content>
                   <Card.Meta><Icon name='dollar' />{e.name}</Card.Meta>
                   <Card.Description>R$ {e.ask}</Card.Description>
