@@ -8,7 +8,7 @@ export default class TagsStore {
 
   @observable geoLocale = '';
 
-  @action getLocation = () => {
+  @action getLocationGPS = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((pos) => {
         this.geoLocale = `Latitude: ${pos.coords.latitude} - Longitude: ${pos.coords.longitude}`;
@@ -25,6 +25,45 @@ export default class TagsStore {
     }
   }
 
+  getUserMedia(constraints) {
+    // if Promise-based API is available, use it
+    if (navigator.mediaDevices) {
+      return navigator.mediaDevices.getUserMedia(constraints);
+    }
+
+    // otherwise try falling back to old, possibly prefixed API...
+    var legacyApi = navigator.getUserMedia;
+
+    if (legacyApi) {
+      // ...and promisify it
+      return new Promise(function (resolve, reject) {
+        legacyApi.bind(navigator)(constraints, resolve, reject);
+      });
+    }
+    throw Error('not suported')
+  }
+
+  @action getStream = (type) => {
+    var constraints = {};
+    constraints[type] = true;
+
+    this.getUserMedia(constraints)!
+      .then(function (stream) {
+        var mediaControl = document.querySelector('video#webcam') as any;
+
+        if ('srcObject' in mediaControl) {
+          mediaControl.srcObject = stream;
+        } else {
+          mediaControl.src = (window.URL || window.webkitURL).createObjectURL(stream);
+        }
+
+        mediaControl.play();
+      })
+      .catch(function (err) {
+        alert('Error: ' + err);
+      });
+
+  }
 }
 const tags = new TagsStore();
 export { tags };

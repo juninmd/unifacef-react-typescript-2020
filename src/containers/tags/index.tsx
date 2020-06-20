@@ -15,7 +15,7 @@ export default class Tags extends React.Component<Props> {
 
   render() {
 
-    const { image, video, getLocation, geoLocale } = this.props.tags;
+    const { image, video, getLocationGPS, geoLocale, getStream } = this.props.tags;
 
     return (
       <Container>
@@ -50,12 +50,18 @@ export default class Tags extends React.Component<Props> {
               </iframe>
             </Form.Field>
             <Form.Field>
-              <button onClick={() => getLocation()}>Pegar Coordenadas</button>
+              <button onClick={() => getLocationGPS()}>Pegar Coordenadas</button>
               <p>{geoLocale}</p>
             </Form.Field>
           </Form.Group>
+          <Form.Group widths='equal'>
+            <Form.Field>
+              <p><button type="button" onClick={() => getStream('video')}>Ativar Web Cam</button></p>
+              <video id='webcam' controls autoPlay={true} style={{ height: '180px', width: '240px' }}></video>
+            </Form.Field>
+          </Form.Group>
         </Form>
-      </Container>
+      </Container >
     );
   }
 }
