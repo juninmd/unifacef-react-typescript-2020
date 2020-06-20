@@ -38,7 +38,7 @@ export default class StarWarsDetails extends React.Component<RouteComponentProps
             </Grid.Column>
           </Grid.Row>
         </Grid>
-        <Card.Group itemsPerRow={2}>
+        <Card.Group>
           <Card>
             <Image src={film.photo} wrapped ui={false} size='small' />
             <Card.Content>
