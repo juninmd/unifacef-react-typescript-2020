@@ -19,7 +19,7 @@ export default class Cache extends React.Component<Props> {
   }
   render() {
 
-    const { local, session, cookie, handleForm, submit } = this.props.cache;
+    const { local, session, cookie, handleForm, indexDb, submit, indexed } = this.props.cache;
 
     const submitForm = (e) => {
       e.preventDefault();
@@ -57,6 +57,12 @@ export default class Cache extends React.Component<Props> {
           </Form.Group>
           <Button type='submit'>Armazenar</Button>
         </Form>
+        <Form.Group widths='equal'>
+          <Form.Field>
+            <pre>{indexed}</pre>
+          </Form.Field>
+          <Button onClick={() => indexDb()}>Indexed DB</Button>
+        </Form.Group>
       </Container>
     );
   }
