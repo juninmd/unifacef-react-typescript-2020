@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { configs } from '../configs';
 
-const baseURL = 'http://cep.republicavirtual.com.br/web_cep.php';
+const baseURL = configs.apis.correios;
 
 export interface GetZipCode {
   resultado: string;

@@ -42,8 +42,12 @@ export default function Github(props: Props) {
     </Segment>
   }
 
+  const openGithub = (url: string) => {
+    window.open(url, 'blank');
+  }
+
   return (
-    <Card>
+    <Card onClick={() => openGithub(profile.html_url)}>
       <Image size='small' src={profile.avatar_url} wrapped ui={false} />
       <Card.Content>
         <Card.Header>{profile.name}</Card.Header>

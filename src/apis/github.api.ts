@@ -1,6 +1,7 @@
+import { configs } from './../configs/index';
 import axios from 'axios';
 
-const baseURL = 'https://api.github.com';
+const baseURL = configs.apis.github;
 
 export interface GetGithub {
   login: string;
