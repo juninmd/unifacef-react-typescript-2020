@@ -13,5 +13,9 @@ export interface GetZipCode {
 }
 
 export const getZipCode = async (zipCode: number) => {
-  return axios.request<GetZipCode>({ baseURL, params: { cep: zipCode, formato: 'jsonp' } })
+  const request = await axios.request<GetZipCode>({ baseURL, params: { cep: zipCode, formato: 'jsonp' } })
+  if (request.data.cidade === '') {
+    throw new Error('Cep não encontrado')
+  }
+  return request;
 }

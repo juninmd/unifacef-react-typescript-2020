@@ -3,6 +3,7 @@ import { assign } from '../../utils/object.util';
 
 export default class RegisterStore {
   @observable zipcode?: number;
+  @observable github?: string;
   @observable records: any[] = [];
 
   @action handleForm = (event: any, select?: any) => {

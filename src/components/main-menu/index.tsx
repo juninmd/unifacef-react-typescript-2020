@@ -3,6 +3,7 @@ import { Menu } from 'semantic-ui-react';
 import { inject, observer } from 'mobx-react';
 import NewRouterStore from '../../mobx/router.store';
 import { endpoints } from '../../routes/endpoints';
+import Logo from '../logo';
 
 interface Props {
   router?: NewRouterStore;
@@ -23,6 +24,9 @@ export default class MainMenu extends React.Component<Props> {
       <>
         <div className={'nav'}>
           <Menu color={'blue'} inverted={true} size='large' secondary={true} stackable={true}>
+            <Menu.Item>
+              <Logo src='https://www.unifacef.com.br/wp-content/uploads/2015/04/Uni_FACEF_MUNICIPAL.png' />
+            </Menu.Item>
             {endpoints.filter(x => x.name).map((item, index) => {
               return <Menu.Item
                 key={index}

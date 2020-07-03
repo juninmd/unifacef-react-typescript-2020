@@ -9,6 +9,6 @@ export default function Logo(props: Props) {
   const { src } = props;
 
   return (
-    <Image src={src} />
+    <Image size='small' src={src} />
   );
 }
