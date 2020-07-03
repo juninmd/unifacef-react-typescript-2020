@@ -25,6 +25,7 @@ export const loadingOff = () => {
   if (el === null) {
     return;
   }
+
   if (Number(el.getAttribute('data-requests')) > 0) {
     el.setAttribute('data-requests', Number(el.getAttribute('data-requests')) - 1);
   }

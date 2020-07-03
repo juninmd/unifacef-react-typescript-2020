@@ -1,36 +1,67 @@
 import React, { useState, useEffect } from "react";
 import { getZipCode, GetZipCode } from "../../apis/correios.api";
+import { Card, Segment, Loader, Image, Icon } from 'semantic-ui-react';
 
 interface Props {
-  zipCode: number;
+  zipCode?: number;
 }
 export default function Cep(props: Props) {
 
-  const addressBlank = { bairro: '', cep: '', complemento: '', gia: '', ibge: '', localidade: '', logradouro: '', uf: '', unidade: '' };
-
-  const [address, setAddress] = useState<GetZipCode>(addressBlank);
-
-  async function getNewAddress(zipCode: number) {
-    try {
-      const response = await getZipCode(zipCode);
-      setAddress(response.data);
-    } catch (error) {
-      setAddress(addressBlank);
-    }
-  }
+  const [address, setAddress] = useState<GetZipCode>();
 
   useEffect(() => {
-    getNewAddress(props.zipCode);
-  }, [getNewAddress, props.zipCode]);
+    const addressBlank: GetZipCode = {
+      bairro: '',
+      cidade: '',
+      logradouro: '',
+      resultado: '',
+      resultado_txt: '',
+      tipo_logradouro: '',
+      uf: ''
+    };
 
-  if (!address) {
-    return <p>"loading...";</p>
+    async function getNewAddress(zipCode: number) {
+      try {
+        const response = await getZipCode(zipCode);
+        setAddress(response.data);
+      } catch (error) {
+        setAddress(addressBlank);
+      }
+    }
+
+    if (props.zipCode?.toString().length === 8) {
+      getNewAddress(props.zipCode);
+    } else {
+      setAddress(undefined);
+    }
+
+  }, [props]);
+
+  if (!address && !props.zipCode) {
+    return <Segment>
+      <p>Informe um número de CEP</p>
+    </Segment>
+  }
+
+  if (!address?.cidade) {
+    return <Segment>
+      <Loader active={true} />
+      <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
+    </Segment>
   }
 
   return (
-    <details>
-      <summary>{address.bairro}</summary>
-      <strong>{address.localidade}</strong>
-    </details>
+    <Card>
+      <Card.Content>
+        <Card.Header>{address.cidade} - {address.uf}</Card.Header>
+        <Card.Meta>{address.bairro}</Card.Meta>
+        <Card.Description>
+          {address.tipo_logradouro} {address.logradouro}
+        </Card.Description>
+      </Card.Content>
+      <Card.Content extra={true}>
+        <Icon name='tree' />{props.zipCode}
+      </Card.Content>
+    </Card>
   );
 }

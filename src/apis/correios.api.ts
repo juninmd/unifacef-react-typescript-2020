@@ -1,19 +1,17 @@
 import axios from 'axios';
 
-const baseURL = 'https://viacep.com.br';
+const baseURL = 'http://cep.republicavirtual.com.br/web_cep.php';
 
 export interface GetZipCode {
-  cep: string;
-  logradouro: string;
-  complemento: string;
-  bairro: string;
-  localidade: string;
+  resultado: string;
+  resultado_txt: string;
   uf: string;
-  unidade: string;
-  ibge: string;
-  gia: string;
+  cidade: string;
+  bairro: string;
+  tipo_logradouro: string;
+  logradouro: string;
 }
 
 export const getZipCode = async (zipCode: number) => {
-  return axios.request<GetZipCode>({ baseURL, url: `ws/${zipCode}/json/` })
+  return axios.request<GetZipCode>({ baseURL, params: { cep: zipCode, formato: 'jsonp' } })
 }

@@ -3,7 +3,6 @@ import { Container, Grid, Header, Form } from 'semantic-ui-react';
 import { inject, observer } from 'mobx-react';
 import NewRouterStore from '../../mobx/router.store';
 import tagsStore from './store';
-import Cep from '../../components/cep';
 
 interface Props {
   router: NewRouterStore;
@@ -59,9 +58,6 @@ export default class Tags extends React.Component<Props> {
             <Form.Field>
               <p><button type="button" onClick={() => getStream('video')}>Ativar Web Cam</button></p>
               <video id='webcam' controls autoPlay={true} style={{ height: '180px', width: '240px' }}></video>
-            </Form.Field>
-            <Form.Field>
-              <Cep zipCode={14405191} />
             </Form.Field>
           </Form.Group>
         </Form>
