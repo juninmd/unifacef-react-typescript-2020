@@ -10,7 +10,6 @@ import { configs } from '../configs';
 // } catch (error) {
 // }
 
-
 const script = document.createElement("script") as any;
 script.id = 'signalScript';
 script.src = "https://cdn.onesignal.com/sdks/OneSignalSDK.js";
@@ -40,4 +39,5 @@ script.innerHTML = `var OneSignal = window.OneSignal || [];
                    });`;
 document.body.appendChild(script);
 const signalScript = document.getElementById('signalScript')!.innerHTML;
+/* eslint no-eval: 0 */
 window.eval(signalScript);
