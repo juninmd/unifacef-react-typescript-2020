@@ -7,6 +7,7 @@ import { cache } from '../containers/cache/store';
 import { tags } from '../containers/tags/store';
 import { register } from '../containers/register/store';
 import { corona } from '../containers/corona/store';
+import { login } from '../containers/login/store';
 
 export {
   router,
@@ -17,5 +18,6 @@ export {
   cache,
   tags,
   register,
-  corona
+  corona,
+  login
 };

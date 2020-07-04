@@ -18,6 +18,11 @@ export default class MainMenu extends React.Component<Props> {
     return setHistory(url);
   };
 
+  logout = () => {
+    const { setHistory } = this.props.router!;
+    return setHistory('logout');
+  }
+
   render() {
 
     return (
@@ -25,7 +30,7 @@ export default class MainMenu extends React.Component<Props> {
         <div className={'nav'}>
           <Menu color={'blue'} inverted={true} size='large' secondary={true} stackable={true}>
             <Menu.Item>
-              <Logo src='https://www.unifacef.com.br/wp-content/uploads/2015/04/Uni_FACEF_MUNICIPAL.png' />
+              <Logo />
             </Menu.Item>
             {endpoints.filter(x => x.name).map((item, index) => {
               return <Menu.Item
@@ -36,6 +41,11 @@ export default class MainMenu extends React.Component<Props> {
                 {item.name}
               </Menu.Item>
             })}
+            <Menu.Menu position='right'>
+              <Menu.Item
+                onClick={this.logout}>
+                Sair</Menu.Item>
+            </Menu.Menu>
           </Menu>
         </div>
       </>
