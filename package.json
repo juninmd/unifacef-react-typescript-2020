@@ -1,6 +1,7 @@
 {
   "name": "unifacef-react-typescript",
   "version": "1.0.0",
+  "homepage": "https://unifacef-react-typescript.netlify.app",
   "private": true,
   "dependencies": {
     "@sentry/browser": "^5.16.1",
