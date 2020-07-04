@@ -1,8 +1,9 @@
 import OneSignal from 'react-onesignal';
+import { configs } from '../configs';
 
 const options = { autoRegister: true, autoResubscribe: true, notifyButton: { enable: true } }
 
-OneSignal.initialize('f0b91418-d0d0-49cf-a5f1-3337b20e5a7b', options);
+OneSignal.initialize(configs.onesignal, options);
 
 try {
     OneSignal.registerForPushNotifications();
