@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import * as serviceWorker from './serviceWorker';
+// import * as serviceWorker from './serviceWorker';
 import * as store from './mobx';
 import Routes from './routes';
 import { createBrowserHistory } from 'history';
@@ -34,4 +34,4 @@ ReactDOM.render(
   </React.StrictMode>,
   rootElement
 );
-serviceWorker.register();
+// serviceWorker.register();
