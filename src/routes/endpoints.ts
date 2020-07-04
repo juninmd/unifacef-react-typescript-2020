@@ -17,7 +17,6 @@ interface EndPointsProps extends RouteProps {
 }
 
 export const endpoints: EndPointsProps[] = [
-  { path: `${publicUrl}/`, component: Home, exact: true },
   { path: `${publicUrl}/home`, name: 'Home', component: Home, exact: true },
   { path: `${publicUrl}/star-wars/:id`, component: StarWarsDetails },
   { path: `${publicUrl}/star-wars/`, name: 'Star Wars', component: StarWars, exact: true },
@@ -30,6 +29,7 @@ export const endpoints: EndPointsProps[] = [
 ];
 
 export const loginEndpoints: EndPointsProps[] = [
+  { path: `${publicUrl}/`, component: Login, exact: true },
   { path: `${publicUrl}/logout`, component: Login, exact: true },
   { path: `${publicUrl}/login`, component: Login, exact: true },
 ];
