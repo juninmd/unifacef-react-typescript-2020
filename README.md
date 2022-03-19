@@ -13,3 +13,6 @@ Configurar env
 ```env
 REACT_APP_SENTRY_DSN
 ```
+
+Tutorial para o curso:
+https://github.com/juninmd/unifacef-react-2020
